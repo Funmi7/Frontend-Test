@@ -14,7 +14,7 @@ This project is a simplified task management board, inspired by tools like Trell
 
 ## Implementation Details
 Drag-and-Drop
-The drag-and-drop feature is implemented using react-beautiful-dnd for smooth, native-like drag-and-drop interactions.
+The drag-and-drop feature should implemented using react-beautiful-dnd for smooth, native-like drag-and-drop interactions.
 Visual feedback is provided during the drag-and-drop action to enhance the user experience.
 
 ## State Management
@@ -22,7 +22,7 @@ The application state is managed using Zustand to maintain a clear and scalable 
 The board's state should use Zustand Persist middleware in the local storage to retain changes across page reloads.
 
 ## Testing
-Unit tests are written using Jest and React Testing Library.
+Unit tests should be written using Jest.
 Tests cover key components and functions to ensure they behave as expected.
 
 ### Enhanced UI/UX: Add animations or transitions to the drag-and-drop interactions.
