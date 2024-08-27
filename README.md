@@ -1,34 +1,36 @@
-# Frontend Test Project: Task Management Board
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Project Overview
+## Getting Started
 
-This project is a simplified task management board, inspired by tools like Trello and Asana. The application allows users to create, organize, and manage tasks within columns using drag-and-drop functionality.
+First, run the development server:
 
-## Features
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Task Creation**: Users can add new tasks to any column.
-- **Drag-and-Drop**: Tasks can be reordered within the same column and moved between columns using drag-and-drop.
-- **Task Editing and Deletion**: Users can edit or delete tasks.
-- **State Persistence**: The state of the board is saved in the browser's local storage, ensuring consistency across page reloads.
-- **Responsive Design**: The application is designed to work well on different screen sizes.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Implementation Details
-Drag-and-Drop
-The drag-and-drop feature should implemented using react-beautiful-dnd for smooth, native-like drag-and-drop interactions.
-Visual feedback is provided during the drag-and-drop action to enhance the user experience.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## State Management
-The application state should be managed using Zustand to maintain a clear and scalable architecture.
-The board's state should use Zustand Persist middleware in the local storage to retain changes across page reloads.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Testing
-Unit tests should be written using Jest.
-Tests cover key components and functions to ensure they behave as expected.
+## Learn More
 
-### Enhanced UI/UX: Add animations or transitions to the drag-and-drop interactions.
+To learn more about Next.js, take a look at the following resources:
 
-## How to Submit
-Please fork this repository, complete the project, and submit your work as a pull request. Alternatively, you can create a private repository and invite [pault@pakt.world] as a collaborator.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Contact
-If you have any questions or need further clarification, feel free to reach out to [feedback@pakt.world].
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
