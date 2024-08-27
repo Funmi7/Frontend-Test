@@ -18,7 +18,7 @@ The drag-and-drop feature should implemented using react-beautiful-dnd for smoot
 Visual feedback is provided during the drag-and-drop action to enhance the user experience.
 
 ## State Management
-The application state is managed using Zustand to maintain a clear and scalable architecture.
+The application state should be managed using Zustand to maintain a clear and scalable architecture.
 The board's state should use Zustand Persist middleware in the local storage to retain changes across page reloads.
 
 ## Testing
