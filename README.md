@@ -19,7 +19,7 @@ Visual feedback is provided during the drag-and-drop action to enhance the user 
 
 ## State Management
 The application state is managed using Zustand to maintain a clear and scalable architecture.
-The board's state is persisted in the local storage to retain changes across page reloads.
+The board's state should use Zustand Persist middleware in the local storage to retain changes across page reloads.
 
 ## Testing
 Unit tests are written using Jest and React Testing Library.
