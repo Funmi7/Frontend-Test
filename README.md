@@ -18,7 +18,7 @@ The drag-and-drop feature is implemented using react-beautiful-dnd for smooth, n
 Visual feedback is provided during the drag-and-drop action to enhance the user experience.
 
 ## State Management
-The application state is managed using React's Context API and useReducer to maintain a clear and scalable architecture.
+The application state is managed using Zustand to maintain a clear and scalable architecture.
 The board's state is persisted in the local storage to retain changes across page reloads.
 
 ## Testing
