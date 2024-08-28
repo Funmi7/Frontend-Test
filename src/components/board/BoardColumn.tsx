@@ -1,7 +1,9 @@
 "use client";
 
-import { FC, Fragment, useState, useEffect } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import { FC, useState, useEffect } from "react";
+import { Droppable } from "react-beautiful-dnd";
+import { GoPlus } from "react-icons/go";
+
 import Task from "@/components/board/Task";
 import { BoardColumnType, TaskType } from "@/types";
 import TaskInput from "./AddTaskInput";
@@ -28,12 +30,12 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }) => {
   }
 
   return (
-    <div className="bg-gray-100 p-4 rounded-lg shadow-lg flex flex-col">
-      <h2 className="font-bold text-lg mb-4">{column.title}</h2>
+    <div className="bg-gray-200 dark:bg-inherit p-4 rounded-lg flex flex-col  w-[348px]">
+      <h5 className="font-medium text-md mb-4">{column.title}</h5>
       <Droppable droppableId={column.id}>
         {(provided) => (
-          <Fragment>
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+          <div ref={provided.innerRef} {...provided.droppableProps}>
+            <div className="flex flex-col gap-4">
               {column?.tasks?.map((task: TaskType, index: number) => (
                 <Task
                   key={task.id}
@@ -50,9 +52,17 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }) => {
                 closeEditMode={() => setInputMode(false)}
               />
             ) : (
-              <button onClick={() => setInputMode(true)}>Add New Task</button>
+              <button
+                onClick={() => setInputMode(true)}
+                className="mt-4 flex text-xs align-middle gap-2"
+              >
+                <div className="mb-3">
+                  <GoPlus fontSize="1rem" />
+                </div>{" "}
+                Add New Task
+              </button>
             )}
-          </Fragment>
+          </div>
         )}
       </Droppable>
     </div>

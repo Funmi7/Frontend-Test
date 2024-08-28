@@ -9,3 +9,8 @@ export type BoardColumnType = {
   title: string;
   tasks: TaskType[];
 };
+
+export type PopupItemsType = {
+  text: string;
+  func: () => void;
+};

@@ -20,7 +20,9 @@ const TaskInput: React.FC<TaskInputProps> = ({
   const addTask = useBoardStore((state) => state.addTask);
   const editTask = useBoardStore((state) => state.editTask);
 
-  const handleValueChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleValueChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
     setTaskValues((prev) => ({ ...prev, [name]: value }));
   };
@@ -49,42 +51,35 @@ const TaskInput: React.FC<TaskInputProps> = ({
   }, [taskToEdit]);
 
   return (
-    <div className="mb-4 w-full">
-      <div className="w-full flex-col gap-2">
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
-            value={taskValues.title}
-            onChange={handleValueChange}
-            name="title"
-            placeholder="Add new task title"
-            className="p-2 border rounded text-black"
-          />
-        </div>
+    <div className="p-4 rounded bg-white dark:bg-black-200 min-h-[100px] mt-4">
+      <div className="w-full flex flex-col gap-3">
+        <input
+          type="text"
+          value={taskValues.title}
+          onChange={handleValueChange}
+          name="title"
+          placeholder="Task title"
+          className="p-2 text-black text-xs w-full focus:outline-none focus:ring-0"
+        />
 
-        <div>
-          <label>Description (optional)</label>
-          <input
-            type="text"
-            value={taskValues.description}
-            onChange={handleValueChange}
-            name="description"
-            placeholder="Add new task description"
-            className="p-2 border rounded text-black"
-          />
-        </div>
+        <textarea
+          value={taskValues.description}
+          onChange={handleValueChange}
+          name="description"
+          placeholder="Task description"
+          className="p-2 text-black text-xs w-full focus:outline-none focus:ring-0"
+        />
       </div>
-      <div className="flex gao-3">
+      <div className="flex gap-3 w-full mt-4">
         <button
           onClick={closeEditMode}
-          className="ml-2 p-2 bg-grey text-white rounded"
+          className="p-2 bg-gray-200 text-black rounded text-xs"
         >
           Cancel
         </button>
         <button
           onClick={taskToEdit ? handleEditTask : handleAddTask}
-          className="ml-2 p-2 bg-blue-500 text-white rounded"
+          className="p-2 bg-purple text-white rounded text-xs"
         >
           {taskToEdit ? "Update Task" : "Add Task"}
         </button>
