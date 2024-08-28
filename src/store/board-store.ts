@@ -1,13 +1,19 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 import { BoardColumnType, TaskType } from "@/types";
 
 export type BoardState = {
   boardColumns: BoardColumnType[];
   addTask: (columnId: string, task: Omit<TaskType, "id">) => void;
-  moveTask: (sourceId: string, destinationId: string, taskId: string) => void;
+  moveTask: (
+    sourceId: string,
+    destinationId: string,
+    taskId: string,
+    sourceIndex: number,
+    destinationIndex: number
+  ) => void;
   deleteTask: (columnId: string, taskId: string) => void;
   editTask: (
     columnId: string,
@@ -22,7 +28,7 @@ const boardColumns = [
   { id: "in-progress", title: "In Progress", tasks: [] },
   { id: "done", title: "Done", tasks: [] },
 ];
-const uuId = v4();
+
 export const useBoardStore = create<BoardState>()(
   persist(
     (set) => ({
@@ -30,7 +36,7 @@ export const useBoardStore = create<BoardState>()(
       addTask: (columnId, task) =>
         set((state) => {
           const newTask = {
-            id: uuId,
+            id: uuidv4(),
             title: task.title,
             description: task.description,
           };
@@ -41,7 +47,14 @@ export const useBoardStore = create<BoardState>()(
           );
           return { boardColumns: newBoardColumns };
         }),
-      moveTask: (sourceId, destinationId, taskId) =>
+
+      moveTask: (
+        sourceId,
+        destinationId,
+        taskId,
+        sourceIndex,
+        destinationIndex
+      ) =>
         set((state) => {
           const sourceColumn = state.boardColumns.find(
             (column) => column.id === sourceId
@@ -49,25 +62,42 @@ export const useBoardStore = create<BoardState>()(
           const destinationColumn = state.boardColumns.find(
             (column) => column.id === destinationId
           );
+
           if (!sourceColumn || !destinationColumn) {
             return { boardColumns: [...state.boardColumns] };
           }
-          const task = sourceColumn.tasks.find((item) => item.id === taskId);
-          if (!task) {
-            return { boardColumns: [...state.boardColumns] };
-          }
-          sourceColumn.tasks = sourceColumn.tasks.filter(
-            (item) => item.id !== taskId
-          );
-          destinationColumn.tasks = [...destinationColumn.tasks, task];
 
-          const updatedBoardColumns = state.boardColumns.map((column) => {
-            if (column.id === sourceId) return sourceColumn;
-            if (column.id === destinationId) return destinationColumn;
+          if (sourceId === destinationId) {
+            const updatedTasks = Array.from(sourceColumn.tasks);
+            const [movedTask] = updatedTasks.splice(sourceIndex, 1);
+            updatedTasks.splice(destinationIndex, 0, movedTask);
+
+            const updatedColumns = state.boardColumns.map((column) =>
+              column.id === sourceId
+                ? { ...column, tasks: updatedTasks }
+                : column
+            );
+
+            return { boardColumns: updatedColumns };
+          }
+
+          const sourceTasks = Array.from(sourceColumn.tasks);
+          const destinationTasks = Array.from(destinationColumn.tasks);
+
+          const [movedTask] = sourceTasks.splice(sourceIndex, 1);
+          destinationTasks.splice(destinationIndex, 0, movedTask);
+
+          const updatedColumns = state.boardColumns.map((column) => {
+            if (column.id === sourceId)
+              return { ...column, tasks: sourceTasks };
+            if (column.id === destinationId)
+              return { ...column, tasks: destinationTasks };
             return column;
           });
-          return { boardColumns: updatedBoardColumns };
+
+          return { boardColumns: updatedColumns };
         }),
+
       deleteTask: (columnId, taskId) =>
         set((state) => {
           const updatedBoardColumns = state.boardColumns.map((column) =>
@@ -80,6 +110,7 @@ export const useBoardStore = create<BoardState>()(
           );
           return { boardColumns: updatedBoardColumns };
         }),
+
       editTask: (columnId, taskId, editedTask) =>
         set((state) => {
           const updatedColumns = state.boardColumns.map((column) =>
