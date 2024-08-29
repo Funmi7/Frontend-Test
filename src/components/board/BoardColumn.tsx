@@ -30,7 +30,7 @@ const BoardColumn: FC<BoardColumnProps> = ({ column }) => {
   }
 
   return (
-    <div className="bg-gray-200 dark:bg-inherit p-4 rounded-lg flex flex-col  w-[348px]">
+    <div className="bg-gray-200 dark:bg-inherit p-4 lg:p-2 xl:p-4 rounded-lg flex flex-col  overflow-y-auto no-scrollbar">
       <h5 className="font-medium text-md mb-4">{column.title}</h5>
       <Droppable droppableId={column.id}>
         {(provided) => (

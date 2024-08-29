@@ -59,7 +59,7 @@ const TaskInput: React.FC<TaskInputProps> = ({
           onChange={handleValueChange}
           name="title"
           placeholder="Task title"
-          className="p-2 text-black text-xs w-full focus:outline-none focus:ring-0"
+          className="p-2 text-black dark:text-white text-xs w-full focus:outline-none focus:ring-0 dark:bg-black-200"
         />
 
         <textarea
@@ -67,19 +67,19 @@ const TaskInput: React.FC<TaskInputProps> = ({
           onChange={handleValueChange}
           name="description"
           placeholder="Task description"
-          className="p-2 text-black text-xs w-full focus:outline-none focus:ring-0"
+          className="p-2 text-black dark:text-white text-xs w-full focus:outline-none focus:ring-0 dark:bg-black-200"
         />
       </div>
       <div className="flex gap-3 w-full mt-4">
         <button
           onClick={closeEditMode}
-          className="p-2 bg-gray-200 text-black rounded text-xs"
+          className="p-2 bg-gray-200 text-black dark:text-white rounded text-xs"
         >
           Cancel
         </button>
         <button
           onClick={taskToEdit ? handleEditTask : handleAddTask}
-          className="p-2 bg-purple text-white rounded text-xs disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="p-2 bg-purple text-white  rounded text-xs disabled:bg-gray-400 disabled:cursor-not-allowed disabled:dark:text-gray-300"
           disabled={taskValues.title === ""}
         >
           {taskToEdit ? "Update Task" : "Add Task"}

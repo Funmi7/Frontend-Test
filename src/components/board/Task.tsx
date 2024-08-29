@@ -62,7 +62,7 @@ const Task: React.FC<TaskProps> = ({
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              className="p-4 rounded bg-white dark:bg-black-200 min-h-[100px]"
+              className="p-2 xl:p-4 rounded bg-white dark:bg-black-200 min-h-[100px]"
             >
               <div className="w-full flex flex-col gap-2">
                 <div className="w-full flex justify-between">

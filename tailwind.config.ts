@@ -23,6 +23,7 @@ const config: Config = {
         "gray-400": "#eae8eb",
         "black-100": "#0b0a1d",
         "black-200": "#17181a",
+        "black-300": "#0f1011",
       },
     },
   },
