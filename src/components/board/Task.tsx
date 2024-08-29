@@ -67,7 +67,11 @@ const Task: React.FC<TaskProps> = ({
               <div className="w-full flex flex-col gap-2">
                 <div className="w-full flex justify-between">
                   <h5 className="text-sm">{task.title}</h5>
-                  <div onClick={() => setShowPopup(true)} className="relative">
+                  <div
+                    onClick={() => setShowPopup(true)}
+                    className="relative"
+                    data-testid="three-dot-wrap"
+                  >
                     <BsThreeDots />
                     {showPopup && (
                       <Popup
@@ -79,8 +83,6 @@ const Task: React.FC<TaskProps> = ({
                 </div>
                 <p className="text-xs text-gray-300">{task.description}</p>
               </div>
-              {/* <button onClick={handleDeleteTask}>Delete</button>
-              <button onClick={() => setEditMode(true)}>Edit</button> */}
             </div>
           )}
         </Draggable>

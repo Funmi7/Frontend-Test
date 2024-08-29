@@ -8,8 +8,6 @@ import { useBoardStore } from "@/store/board-store";
 const BoardSection = () => {
   const { boardColumns, moveTask } = useBoardStore();
 
-  console.log(boardColumns);
-
   const onDragEnd = (result: DropResult) => {
     const { source, destination, draggableId } = result;
     if (!destination) return;

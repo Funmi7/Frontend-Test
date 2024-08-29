@@ -21,6 +21,7 @@ const Popup: FC<PopupProps> = ({ items, closePopup }) => {
       {items.map(({ text, func }) => (
         <p
           onClick={func}
+          key={text}
           className="text-xs text-black-100 [&:not(:last-child)]:border-b border-gray-400 py-3 px-3 hover:bg-gray-200 rounded-sm"
         >
           {text}

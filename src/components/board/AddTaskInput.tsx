@@ -79,7 +79,8 @@ const TaskInput: React.FC<TaskInputProps> = ({
         </button>
         <button
           onClick={taskToEdit ? handleEditTask : handleAddTask}
-          className="p-2 bg-purple text-white rounded text-xs"
+          className="p-2 bg-purple text-white rounded text-xs disabled:bg-gray-400 disabled:cursor-not-allowed"
+          disabled={taskValues.title === ""}
         >
           {taskToEdit ? "Update Task" : "Add Task"}
         </button>
