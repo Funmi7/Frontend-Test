@@ -6,6 +6,7 @@ import { useBoardStore } from "@/store/board-store";
 import { TaskType } from "@/types";
 import TaskInput from "./AddTaskInput";
 import Popup from "../common/Popup";
+import { cn } from "@/utils/Functions";
 
 type TaskProps = {
   task: TaskType;
@@ -57,12 +58,17 @@ const Task: React.FC<TaskProps> = ({
         />
       ) : (
         <Draggable key={task.id} draggableId={task.id} index={itemIndex}>
-          {(provided) => (
+          {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              className="p-2 xl:p-4 rounded bg-white dark:bg-black-200 min-h-[100px]"
+              className={cn(
+                "p-2 xl:p-4 rounded bg-white dark:bg-black-200 min-h-[100px] hover:bg-gray-100 hover:dark:bg-black-400",
+                snapshot && snapshot.isDragging
+                  ? "bg-gray-400 dark:bg-black-500 border-gray-200"
+                  : "bg-white"
+              )}
             >
               <div className="w-full flex flex-col gap-2">
                 <div className="w-full flex justify-between">

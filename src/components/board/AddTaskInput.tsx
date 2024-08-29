@@ -51,7 +51,7 @@ const TaskInput: React.FC<TaskInputProps> = ({
   }, [taskToEdit]);
 
   return (
-    <div className="p-4 rounded bg-white dark:bg-black-200 min-h-[100px] mt-4">
+    <div className="p-4 rounded bg-white dark:bg-black-200 min-h-[100px] mt-4 animate-fadeInUp">
       <div className="w-full flex flex-col gap-3">
         <input
           type="text"
